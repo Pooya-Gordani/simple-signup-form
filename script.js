@@ -6,10 +6,7 @@ var input_phone_number = document.sign_up_form.input_phone_number;
 var input_password = document.sign_up_form.input_password;
 var input_retype_password = document.sign_up_form.input_retype_password;
 var password_match_status = document.querySelector('.password_match_status');
-console.log(password_match_status);
 
-
-console.log(input_last_name);
 
 sign_up_form.addEventListener('submit', function(event){
     event.preventDefault();
@@ -19,6 +16,12 @@ sign_up_form.addEventListener('submit', function(event){
     validateInputsForm(input_phone_number);
     validateInputsForm(input_password);
     validateInputsForm(input_retype_password);
+
+    // Check if all fields are valid
+    if (areAllFieldsValid()) {
+        alert("Form submitted successfully!"); // Show success alert
+    }
+
     return false;
 })
 
@@ -32,15 +35,11 @@ function validateInputsForm(inputName){
     }
 
     if(input_password.value !== input_retype_password.value){
-        console.log("passowrds are not the same!!");
         input_password.classList.add('is-invalid');
         input_retype_password.classList.add('is-invalid');
         password_match_status.classList.remove('visually-hidden');
     }
     else{
-        console.log("Everthing Ok!");
-        input_password.classList.remove('is-valid');
-        input_retype_password.classList.remove('is-valid');
         password_match_status.classList.add('visually-hidden');
     }
 }
@@ -50,3 +49,10 @@ const checkBox_agree_to_terms = document.getElementById('check');
 checkBox_agree_to_terms.addEventListener('change', function() {
     document.getElementById('btn-sign-up').disabled = !this.checked;
 });
+
+
+// To check if all fields are valid
+function areAllFieldsValid() {
+    const inputs = [input_first_name, input_last_name, input_email_address, input_phone_number, input_password, input_retype_password];
+    return inputs.every(input => input.classList.contains('is-valid')) && input_password.value === input_retype_password.value;
+}
