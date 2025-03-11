@@ -7,6 +7,16 @@ var input_password = document.sign_up_form.input_password;
 var input_retype_password = document.sign_up_form.input_retype_password;
 var password_match_status = document.querySelector('.password_match_status');
 var alert_success = document.querySelector('.alert-success');
+const alert_box = 
+`
+<div class="alert alert-success alert-dismissible fade show" id="alert">
+    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </svg>
+    Form submited successfully!
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+`;
 console.log(alert_success);
 
 
@@ -21,7 +31,8 @@ sign_up_form.addEventListener('submit', function(event){
 
     // Check if all fields are valid
     if (areAllFieldsValid()) {
-        alert_success.classList.remove('visually-hidden');
+        // alert_success.classList.remove('visually-hidden');
+        document.querySelector('.alert-container').innerHTML = alert_box;
     }
 
     return false;
