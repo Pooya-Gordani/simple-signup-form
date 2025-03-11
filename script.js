@@ -6,6 +6,8 @@ var input_phone_number = document.sign_up_form.input_phone_number;
 var input_password = document.sign_up_form.input_password;
 var input_retype_password = document.sign_up_form.input_retype_password;
 var password_match_status = document.querySelector('.password_match_status');
+var alert_success = document.querySelector('.alert-success');
+console.log(alert_success);
 
 
 sign_up_form.addEventListener('submit', function(event){
@@ -19,7 +21,7 @@ sign_up_form.addEventListener('submit', function(event){
 
     // Check if all fields are valid
     if (areAllFieldsValid()) {
-        alert("Form submitted successfully!"); // Show success alert
+        alert_success.classList.remove('visually-hidden');
     }
 
     return false;
