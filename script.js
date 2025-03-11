@@ -6,6 +6,7 @@ var input_phone_number = document.sign_up_form.input_phone_number;
 var input_password = document.sign_up_form.input_password;
 var input_retype_password = document.sign_up_form.input_retype_password;
 var password_match_status = document.querySelector('.password_match_status');
+const alert_container = document.querySelector('.alert-container');
 var alert_success = document.querySelector('.alert-success');
 const alert_box = 
 `
@@ -55,6 +56,17 @@ function validateInputsForm(inputName){
     else{
         password_match_status.classList.add('visually-hidden');
     }
+
+    setTimeout(() => {
+        const alertElement = alert_container.querySelector('.alert');
+        if (alertElement) {
+            alertElement.classList.remove('show'); // Fade out the alert
+            alertElement.classList.add('fade'); // Ensure fade animation
+            setTimeout(() => {
+                alertElement.remove(); // Remove the alert from the DOM after fading out
+            }, 150); // Wait for the fade animation to complete
+        }
+    }, 3000); // 3 seconds delay
 }
 
 const checkBox_agree_to_terms = document.getElementById('check');
